@@ -1,28 +1,67 @@
-# 2610 Django + Vite Starting Point
-This project serves as a starting point you to use as a starting point for Django applications that use Vite as the asset server for development. You are welcome to us this project for all of your assignments beginning with Module 5.
+# DND-Inventory-Manager  
+**D&D Inventory & Campaign Manager** – A tool to track character inventories, manage campaign notes, and organize game sessions efficiently. Features include item tracking, party management, and session logs. Built for DMs and players alike!
 
-## Strategy
-This application is a hybrid MPA and SPA. It reuses all of the login stuff that we did at the end of module 3 - there is a separate page for signup/signin. Once a user is logged in they are redirected to the / view which then renders the SPA application created using React and Vite.
+---
 
-## Creating a new application
-1. Clone the repo `git clone git@github.com:dittonjs/2610DjangoViteStarter.git <your-new-project-name>`. Replace `<your-new-project-name>` with the name you want give to your project.
-   - If you are using GitHub for version control, a better option would be to fork the repository instead of clone it.
-3. Open the pyproject.toml file and change the `name` property. You should use `-` to separate words in your name for this property.
-4. This project was set up using Python 3.11. You might have an older version installed. If you run into an error later that says that your activated Python version isn't compatible, the in the pyproject.toml file, just change the version there to match the version that you have installed. If you do this, you need to make sure that the lock file gets regenerated. You can do this by running `poetry lock --no-update` or by simply deleting the poetry.lock file (it will get regenerated when you run poetry install)/
+# DND Inventory Manmager  
 
-## Initial Setup
-1. Change the name property in the `pyproject.toml` file to be something unique to your project.
-1. In the root directory, install the python dependencies `poetry install --no-root`
-2. In the `client` directory, install the javascript dependencies `npm install`
-3. In the `_server` directory, create a new file called `.env`
-4. Copy the contents of `_server/.env.example` into the newly created `.env` file.
-5. Activate the poetry env `poetry shell`, or, if you do not have the poetry shell plugin use `poetry run <the command you want to run>` to run somesomething
-6. In the `_server` directory, run the migrations `python manage.py migrate`
+## General Description  
+This application is designed to be a D&D group's new best friend! It provides a convenient and easy way for players to manage their character sheets without having to constantly erase information. It also displays details about all their items from the *D&D Handbook*, so they don't have to look anything up! DMs will have tools to manage their sessions and campaigns, and can take notes for individual sessions or the overall campaign to share with players—ensuring everyone has access to the same information.
 
-## Running the appliction
-1. In the `client` directory run `npm run dev`
-2. In the `_server` directory (with your poetry env activated) run `python manage.py runserver`
-3. Visit your application at `http://localhost:8000`
+---
 
-## Using this project for future classes/personal projects
-Many students in the past have chosen to use this starter app template for projects in other classes like CS3450 and for personal projects. I strongly encourage you to do so! Please check with your other instructors before you use this project as a starting point for their classes. You may also want to add your name to the author field in the `pyproject.toml` file.
+## Feature List  
+
+### Must-Have Features  
+- Log in  
+- Helpful Character Sheets  
+  - Display the most important information by default  
+  - Name, backstory, class & level, race, alignment, XP, etc.  
+  - Individual campaign notes  
+- Inventory management  
+  - API integration to display item descriptions  
+  - Support for custom items  
+- Highlight equipped weapons/armor  
+- Currency conversion and tracking  
+- DM access to party member information  
+- DM campaign notes that are viewable by players  
+
+### Nice-to-Have Features  
+- Modular character sheets (customizable layout)  
+- Audio transcription with written summaries  
+- Item categorization (e.g., view all healing items in one search)  
+- Automatic AC and attack bonus updates based on equipped items  
+- Character sheet creation helper (auto-calculate stats)  
+- Party management (trade items between characters, view other character backstories if allowed)
+
+---
+
+## Technical Challenges  
+- Supporting both DM and player views will require conditional logic and role-based access  
+- Managing view/edit permissions based on campaign and user role  
+- Ensuring proper visibility of character info based on campaign membership  
+- Learning and integrating with the item description API
+
+- Link to website: [https://www.dnd5eapi.co/](https://www.dnd5eapi.co/)  
+- API Link: [https://www.dnd5eapi.co/api/2014/](https://www.dnd5eapi.co/api/2014/)
+
+---
+
+## Requirements  
+
+1. This application will use **React** for the frontend to dynamically display user input, character sheet data, and campaign/session info. **Django** will serve as the backend for data storage and authentication.  
+2. There will be a landing page, a login page, a "Players" page (for managing character sheets, inventory, personal notes, session notes, etc.), and a "DM" page (for managing party data and campaign/session notes).  
+3. A login system is required. Each user can have multiple characters and campaigns.  
+4. This application aims to eliminate the tediousness of managing paper character sheets and streamline session/campaign management for DMs, providing unified notes for everyone.  
+5. The app will feature consistent CSS and styling across all pages to create a unified look and feel.  
+6. Users can create multiple characters and campaigns, each of which can contain any number of items, quests, notes, etc.
+
+---
+
+## Group Members  
+
+- **Group 1**  
+- **Charlie Miner**  
+  - A02325182  
+- **Chandler Neeley**  
+  - A02429680
