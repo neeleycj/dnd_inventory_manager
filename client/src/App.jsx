@@ -21,42 +21,44 @@ function App() {
 
   return (
     <>
-      <div className="sheet">
-        <h1>Character Name</h1>
-        <h2>Class & Level: Fighter 5 | Race: Human | Alignment: Neutral Good</h2>
+      <div className="character-sheet">
+        <div className="character-sheet-header">
+          <h1>Character Name</h1>
+          <h2>Class & Level: Fighter 5 | Race: Human | Alignment: Neutral Good</h2>
+        </div>
 
-        <div className="grid">
-          <div class="section">
+        <div className="character-sheet-grid">
+          <div className="character-sheet-section">
             <h3>Ability Scores</h3>
             <div className="ability-scores">
-              <div class="stat">
+              <div className="ability-score-stat">
                 <h4>STR</h4>
-                <div class="box">16</div>
+                <div className="grey-number-box">16</div>
               </div>
-              <div class="stat">
+              <div className="ability-score-stat">
                 <h4>DEX</h4>
-                <div class="box">14</div>
+                <div className="grey-number-box">14</div>
               </div>
-              <div class="stat">
+              <div className="ability-score-stat">
                 <h4>CON</h4>
-                <div class="box">15</div>
+                <div className="grey-number-box">15</div>
               </div>
-              <div class="stat">
+              <div className="ability-score-stat">
                 <h4>INT</h4>
-                <div class="box">10</div>
+                <div className="grey-number-box">10</div>
               </div>
-              <div class="stat">
+              <div className="ability-score-stat">
                 <h4>WIS</h4>
-                <div class="box">12</div>
+                <div className="grey-number-box">12</div>
               </div>
-              <div class="stat">
+              <div className="ability-score-stat">
                 <h4>CHA</h4>
-                <div class="box">8</div>
+                <div className="grey-number-box">8</div>
               </div>
             </div>
           </div>
 
-          <div class="section">
+          <div className="character-sheet-section">
             <h3>Combat Stats</h3>
             <p>Armor Class: <strong>17</strong></p>
             <p>Initiative: <strong>+2</strong></p>
@@ -65,7 +67,7 @@ function App() {
             <p>Hit Dice: <strong>5d10</strong></p>
           </div>
 
-          <div class="section">
+          <div className="character-sheet-section">
             <h3>Saving Throws</h3>
             <p>Strength: +5</p>
             <p>Constitution: +4</p>
@@ -76,8 +78,8 @@ function App() {
           </div>
         </div>
 
-        <div class="grid">
-          <div class="section">
+        <div className="character-sheet-grid">
+          <div className="character-sheet-section">
             <h3>Skills</h3>
             <p>Acrobatics: +2</p>
             <p>Perception: +3</p>
@@ -86,7 +88,7 @@ function App() {
             <p>Intimidation: +1</p>
           </div>
 
-          <div class="section">
+          <div className="character-sheet-section">
             <h3>Equipment</h3>
             <ul>
               <li>Longsword</li>
@@ -97,7 +99,7 @@ function App() {
             </ul>
           </div>
 
-          <div class="section">
+          <div className="character-sheet-section">
             <h3>Features & Traits</h3>
             <ul>
               <li>Second Wind</li>
@@ -108,7 +110,7 @@ function App() {
           </div>
         </div>
 
-        <div class="section">
+        <div className="character-sheet-section">
           <h3>Backstory</h3>
           <p>Once a soldier in a forgotten war, now a wandering sword-for-hire with a strong sense of justice.</p>
         </div>

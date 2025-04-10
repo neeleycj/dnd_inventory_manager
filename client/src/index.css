@@ -1,10 +1,9 @@
 :root {
   --color-background_primary: #E0CBA8;
   --color-text_primary: #00272b;
-  --color-background_secondary: #e0ebf6;
+  --color-background_secondary: #4a4a4a;
   --color-green: #04a777;
   --color-red: #B90C09;
-
 }
 
 @font-face {
@@ -20,71 +19,77 @@ body {
   padding: 50px;
 }
 
-/* CHARACTER SHEET EVERYTHING */
+/* CHARACTER SHEET */
 
 .character-sheet {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
-
-h1,
-h2 {
-  text-align: center;
-}
-
-.sheet {
   background-color: var(--color-background_primary);
   max-width: 800px;
   margin: 0 auto;
   border: 2px solid #444;
-  padding: 20px;
   border-radius: 10px;
-}
-
-.grid {
+  padding: 20px;
+  box-sizing: border-box;
   display: flex;
-  margin: 20px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.section {
-  background-color: whitesmoke;
-  border: 1px solid #999;
-  padding: 10px;
-  margin: 20px;
+.character-sheet-header {
+  text-align: center;
+}
+
+.character-sheet-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between; /* or center/flex-start depending on your look */
+}
+
+.character-sheet-section {
+  flex: 1 1 250px; /* grow, shrink, and min width */
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
   border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-.section h3 {
+.character-sheet-section {
+  flex: 1 1 250px; /* grow, shrink, and min width */
+  box-sizing: border-box;
+}
+
+
+.character-sheet-section h3 {
   margin-top: 0;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .ability-scores {
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.stat {
+.ability-score-stat {
+  flex: 1 1 80px;
   text-align: center;
-  margin: 10px;
+}
+
+.ability-score-stat h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.grey-number-box {
+  background-color: #ddd;
+  border-radius: 6px;
   padding: 10px;
-  border: 1px solid #999;
-  border-radius: 8px;
-}
-
-.stat h4 {
-  margin: 5px 0;
-}
-
-.box {
-  border: 1px solid #ccc;
-  padding: 6px;
+  font-weight: bold;
+  font-size: 1.2rem;
   margin-top: 5px;
-
-  text-align: center;
 }
