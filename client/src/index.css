@@ -1,69 +1,90 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --color-background_primary: #E0CBA8;
+  --color-text_primary: #00272b;
+  --color-background_secondary: #e0ebf6;
+  --color-green: #04a777;
+  --color-red: #B90C09;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@font-face {
+  font-family: 'Eagle Lake';
+  src: url("EagleLake-Regular.ttf");
 }
 
 body {
+  background-color: var(--color-background_secondary);
+  color: var(--color-text_primary);
+  font-family: "Eagle Lake", serif;
   margin: 0;
+  padding: 50px;
+}
+
+/* CHARACTER SHEET EVERYTHING */
+
+.character-sheet {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1,
+h2 {
+  text-align: center;
 }
 
-button {
+.sheet {
+  background-color: var(--color-background_primary);
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid #444;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.grid {
+  display: flex;
+  margin: 20px;
+}
+
+.section {
+  background-color: whitesmoke;
+  border: 1px solid #999;
+  padding: 10px;
+  margin: 20px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.section h3 {
+  margin-top: 0;
+}
+
+.ability-scores {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.stat {
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 8px;
+}
+
+.stat h4 {
+  margin: 5px 0;
+}
+
+.box {
+  border: 1px solid #ccc;
+  padding: 6px;
+  margin-top: 5px;
+
+  text-align: center;
 }
