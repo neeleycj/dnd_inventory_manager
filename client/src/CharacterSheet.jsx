@@ -69,6 +69,7 @@ export default function CharacterSheet(props) {
 
           <div className="character-sheet-section">
             <h3>Equipment</h3>
+            {/* Make a section for equipped items that are styled differently */}
             <ul>
                 <li><strong>Weapons:</strong></li>
               {props.equipment.weapons.map((weapon, index) => (
