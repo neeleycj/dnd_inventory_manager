@@ -1,20 +1,26 @@
+@font-face {
+  font-family: 'Eagle Lake';
+  src: url("EagleLake-Regular.ttf");
+}
+
+
 :root {
   --color-background_primary: #E0CBA8;
   --color-text_primary: #00272b;
   --color-background_secondary: #4a4a4a;
   --color-green: #04a777;
   --color-red: #B90C09;
+  --color-white: #ffffff;
+  --color-grey-light: #cccccc;
+  --color-grey-medium: #999999;
+  --color-grey-hover: rgba(0, 0, 0, 0.1);
+  font-family: "Eagle Lake", serif;
 }
 
-@font-face {
-  font-family: 'Eagle Lake';
-  src: url("EagleLake-Regular.ttf");
-}
 
 body {
   background-color: var(--color-background_secondary);
   color: var(--color-text_primary);
-  font-family: "Eagle Lake", serif;
   margin: 0;
   padding: 50px;
 }
@@ -42,11 +48,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: space-between; /* or center/flex-start depending on your look */
+  justify-content: space-between;
+  /* or center/flex-start depending on your look */
 }
 
 .character-sheet-section {
-  flex: 1 1 250px; /* grow, shrink, and min width */
+  flex: 1 1 250px;
+  /* grow, shrink, and min width */
   box-sizing: border-box;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
@@ -56,7 +64,8 @@ body {
 }
 
 .character-sheet-section {
-  flex: 1 1 250px; /* grow, shrink, and min width */
+  flex: 1 1 250px;
+  /* grow, shrink, and min width */
   box-sizing: border-box;
 }
 
@@ -92,4 +101,171 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: 5px;
+}
+
+/* === GENERAL RESET & BASE === */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: var(--color-text_primary);
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+/* === BUTTONS === */
+
+button,
+.button {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border: none;
+  padding: 0.6em 1.2em;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover,
+.button:hover {
+  background-color: #038c67;
+  /* Slightly darker green; feel free to add a variable */
+}
+
+button:disabled,
+.button:disabled {
+  background-color: var(--color-grey-medium);
+  cursor: not-allowed;
+}
+
+/* === NAVIGATION LINKS === */
+
+.nav-link {
+  color: var(--color-text_primary);
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  background-color: var(--color-grey-hover);
+}
+
+/* === FORM INPUTS === */
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5em;
+  border: 1px solid var(--color-grey-medium);
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 0.25em;
+  margin-bottom: 1em;
+  background-color: var(--color-white);
+  color: var(--color-text_primary);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-green);
+  outline: none;
+}
+
+/* === UTILITIES === */
+
+.gap-sm {
+  gap: 8px;
+}
+
+.gap-md {
+  gap: 16px;
+}
+
+.gap-lg {
+  gap: 24px;
+}
+
+.mt-1 {
+  margin-top: 8px;
+}
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mt-3 {
+  margin-top: 24px;
+}
+
+.mb-1 {
+  margin-bottom: 8px;
+}
+
+.mb-2 {
+  margin-bottom: 16px;
+}
+
+.mb-3 {
+  margin-bottom: 24px;
+}
+
+.p-1 {
+  padding: 8px;
+}
+
+.p-2 {
+  padding: 16px;
+}
+
+.p-3 {
+  padding: 24px;
 }
