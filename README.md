@@ -21,8 +21,8 @@ This application is designed to be a D&D group's new best friend! It provides a 
 - Inventory management  
   - API integration to display item descriptions  
   - Support for custom items  
+  - Currency conversion and tracking  
 - Highlight equipped weapons/armor  
-- Currency conversion and tracking  
 - DM access to party member information  
 - DM campaign notes that are viewable by players  
 
@@ -32,7 +32,7 @@ This application is designed to be a D&D group's new best friend! It provides a 
 - Item categorization (e.g., view all healing items in one search)  
 - Automatic AC and attack bonus updates based on equipped items  
 - Character sheet creation helper (auto-calculate stats)  
-- Party management (trade items between characters, view other character backstories if allowed)
+- Party management (trade items between characters, view other character backstories if allowed)  
 
 ---
 
