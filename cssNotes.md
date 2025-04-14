@@ -1,5 +1,5 @@
 | Class Name               | Purpose                                    |
-| ------------------------ | ------------------------------------------ |
+| :------------------------: | :------------------------------------------: |
 | .character-sheet         | Main wrapper                               |
 | .character-sheet-header  | Title or header section                    |
 | .character-sheet-grid    | Flexible section layout                    |
