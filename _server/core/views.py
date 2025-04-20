@@ -67,10 +67,10 @@ def create_character(req):
     body = json.loads(req.body)
     character = Character(
         name= body["name"],
-        class_type= body["class"],
+        class_type= body["class_type"],
         level= body["level"],
-        experience= body["experience"],
-        race= body["experience"],
+        # experience=body["experience"],
+        race= body["race"],
         alignment= body["alignment"],
         ability_scores= body["ability_scores"],
         saving_throws= body["saving_throws"],
