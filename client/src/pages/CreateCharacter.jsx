@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
-export default function CharacterSheet(props) {
+export function CreateCharacter() {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [class_type, setClass_type] = useState("");
     const [level, setLevel] = useState("");
@@ -68,13 +70,10 @@ export default function CharacterSheet(props) {
             backstory
         });
         if (res.ok){
-            const data = await res.json();
-            console.log(data);
-            // Handle success (e.g., redirect to character sheet)
+            navigate('/');
         }
-
-
     }
+
     function handleEquipmentChange(category, index, value) {
         setEquipment((prevEquipment) => {
           const updatedCategory = [...prevEquipment[category]];
