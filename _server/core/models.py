@@ -16,14 +16,15 @@ class Character(models.Model):
     spells = models.JSONField(default=dict)
     features_and_traits = models.JSONField(default=dict)
     backstory = models.TextField()
+    campaign = models.ForeignKey('Campaign', on_delete=models.CASCADE, related_name='characters', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='characters')
+
 
 class Campaign(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     dm = models.ForeignKey(User, on_delete=models.CASCADE, related_name='campaigns')
     players = models.ManyToManyField(User, related_name='campaigns_joined')
-    characters = models.ManyToManyField(Character, related_name='campaigns')
     scenario = models.ManyToManyField('Scenario', related_name='campaigns')
     notes = models.ManyToManyField('Notes', related_name='campaign_notes')
 

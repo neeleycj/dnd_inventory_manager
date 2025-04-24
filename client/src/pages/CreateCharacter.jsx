@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 export function CreateCharacter() {
     const navigate = useNavigate();
+    const { campaignId } = useParams();
     const [name, setName] = useState("");
     const [class_type, setClass_type] = useState("");
     const [level, setLevel] = useState("");
@@ -54,25 +56,27 @@ export function CreateCharacter() {
     async function handleSubmit(e){
         e.preventDefault();
         const makeRequest = useFetch();
-
         const res = await makeRequest("/character/create/", "POST", {
-            name,
-            class_type,
-            level,
-            race,
-            alignment,
-            ability_scores,
-            combat_stats,
-            saving_throws,
-            skills,
-            equipment,
-            features_and_traits,
-            backstory
+          name,
+          class_type,
+          level,
+          race,
+          alignment,
+          ability_scores,
+          combat_stats,
+          saving_throws,
+          skills,
+          equipment,
+          features_and_traits,
+          backstory,
+          campaignId, 
         });
-        if (res.ok){
-            navigate('/');
+        
+        if (res.ok) {
+          const character = await res.json();
+          navigate(`/character/${campaignId}/`);
         }
-    }
+  }
 
     function handleEquipmentChange(category, index, value) {
         setEquipment((prevEquipment) => {

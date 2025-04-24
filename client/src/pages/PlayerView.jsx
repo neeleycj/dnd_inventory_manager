@@ -1,16 +1,35 @@
 import { use, useEffect, useState } from 'react'
 import CharacterSheet from '../components/CharacterSheet'
-import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
+import { useFetch } from "../hooks/useFetch";
+import cookies from "js-cookie";
+import { useParams } from 'react-router-dom';
 
 
-export function PlayerView({ logout, createCharacter }) {
+
+export function PlayerView() {
+const { campaignId } = useParams();
 
 const [character, setCharacter] = useState(null);
+const [user, setUser] = useState(null);
 
+    async function getUser() {
+        const makeRequest = useFetch();
+                const res = await makeRequest("/user/", "GET", null, {
+                    credentials: "same-origin",
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": cookies.get("csrftoken"),
+                    "Accept": "application/json",
+                });
+                if (res.ok){
+                    const user = await res.json();
+                    setUser(user);
+                    console.log(user);
+                }
+    }
   
-  async function getCharacter(character_id) {
-    const res = await fetch(`/character/${character_id}/`, {
+  async function getCharacter(campaign_id) {
+    const res = await fetch(`/character/${campaign_id}/`, {
       credentials: "same-origin", // include cookies!
     });
 
@@ -24,7 +43,8 @@ const [character, setCharacter] = useState(null);
   }
 
   useEffect(() => {
-    getCharacter(3);
+    getUser();
+    getCharacter(campaignId);
   
   }, []);
 
