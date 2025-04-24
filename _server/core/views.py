@@ -49,8 +49,28 @@ def create_campaign(request):
     return JsonResponse(model_to_dict(campaign), safe=False)
 
 @login_required
+def check_campaign(request, campaign_id):
+    try:
+        campaign = Campaign.objects.get(id=campaign_id)
+        return JsonResponse({"id": campaign.id, "name": campaign.name, "description": campaign.description}, status=200)
+    except Campaign.DoesNotExist:
+        return JsonResponse({"error": "Campaign not found"}, status=404)
+@login_required
 def campaign_list(request):
-    campaigns = Campaign.objects.all().values('id', 'name', 'description', 'dm__username')
+    campaigns = Campaign.objects.get(players=request.user)
+    if not campaigns:
+        return JsonResponse({"error": "No campaigns found"}, status=404)
+    campaigns = Campaign.objects.filter(players=request.user)
+    campaigns = [
+        {
+            "id": campaign.id,
+            "name": campaign.name,
+            "description": campaign.description,
+            "dm": campaign.dm.username,
+            "players": [player.username for player in campaign.players.all()]
+        }
+        for campaign in campaigns
+    ]
     return JsonResponse(list(campaigns), safe=False)
 
 @login_required
@@ -116,5 +136,6 @@ def create_character(req):
         user=req.user,
         campaign=campaign,  # make sure your Character model has this FK
     )
+    campaign.players.add(req.user)
 
     return JsonResponse(model_to_dict(character), safe=False)

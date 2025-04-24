@@ -8,4 +8,6 @@ urlpatterns = [
     path('user/', view=views.get_user, name="get_user"),
     path('character/campaign/<int:campaign_id>/', view=views.get_character_for_campaign, name="get_character_for_campaign"),
     path('campaign/create/', view=views.create_campaign, name="create_campaign"),
+    path('campaign/check/<int:campaign_id>/', view=views.check_campaign, name="check_campaign"),
+    path('campaign/list/', view=views.campaign_list, name="campaign_list"),
 ]

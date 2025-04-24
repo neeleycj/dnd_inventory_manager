@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useFetch } from "../hooks/useFetch";
+import cookies from "js-cookie";
 
 
 export function CampaignSelection() {
     const [campaignId, setCampaignId] = useState("");
     const navigate = useNavigate();
+    const [campaigns, setCampaigns] = useState([]);
+    const makeRequest = useFetch();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Assuming you have a function to fetch campaign details
@@ -19,6 +24,24 @@ export function CampaignSelection() {
             console.log("Failed to join campaign");
         }
     };
+    async function getCampaigns(){
+        const res = await makeRequest("/campaign/list/", "GET", null, {
+            credentials: "same-origin",
+            "Content-Type": "application/json",
+            "X-CSRFToken": cookies.get("csrftoken"),
+            "Accept": "application/json",
+        });
+        if (res.ok){
+            const campaigns = await res.json();
+            setCampaigns(campaigns);
+            console.log(campaigns);
+        }
+    }
+    
+    useEffect(() => {
+        getCampaigns();
+    }, []);
+
   return (
     <div className="campaign-selection">
       <h1>Select a Campaign</h1>
@@ -26,7 +49,16 @@ export function CampaignSelection() {
       <button className="get-started-button">
         <Link to="/character/">Campaign Placeholder</Link>
       </button>
-
+        <div>
+        <h2>Available Campaigns</h2>
+        <ul>
+            {campaigns.map((campaign) => (
+                <li key={campaign.id}>
+                    <Link to={`/character/${campaign.id}/`}>{campaign.name}</Link>
+                </li>
+            ))}
+        </ul>
+        </div>
       <form>
         <label>Campaign ID:</label>
         <input type="text" id="campaign-id" name="campaign-id" value={campaignId} onChange={e => setCampaignId(e.target.value)} required/>
