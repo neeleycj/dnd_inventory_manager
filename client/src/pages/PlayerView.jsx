@@ -12,24 +12,13 @@ const { campaignId } = useParams();
 
 const [character, setCharacter] = useState(null);
 const [user, setUser] = useState(null);
+const [campaign, setCampaign] = useState(null);
 
-    async function getUser() {
-        const makeRequest = useFetch();
-                const res = await makeRequest("/user/", "GET", null, {
-                    credentials: "same-origin",
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": cookies.get("csrftoken"),
-                    "Accept": "application/json",
-                });
-                if (res.ok){
-                    const user = await res.json();
-                    setUser(user);
-                    console.log(user);
-                }
-    }
+
+    
   
-  async function getCharacter(campaign_id) {
-    const res = await fetch(`/character/${campaign_id}/`, {
+  async function getCharacter() {
+    const res = await fetch(`/character/${campaignId}/`, {
       credentials: "same-origin", // include cookies!
     });
 
@@ -42,13 +31,34 @@ const [user, setUser] = useState(null);
     }
   }
 
+    async function getCampaign() {
+        const makeRequest = useFetch();
+        const res = await makeRequest(`campaign/details/${campaignId}/`, "GET", null, {
+            credentials: "same-origin",
+            "Content-Type": "application/json",
+            "X-CSRFToken": cookies.get("csrftoken"),
+            "Accept": "application/json",
+        });
+        if (res.ok) {
+            const campaign = await res.json();
+            setCampaign(campaign);
+            console.log(campaign);
+        }
+    }
+
   useEffect(() => {
-    getUser();
-    getCharacter(campaignId);
+    getCampaign();
+    getCharacter();
   
   }, []);
 
-
+    if (!character || !campaign) {
+        return (
+            <div className="loading">
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
 
   return (
     <>
@@ -75,6 +85,16 @@ const [user, setUser] = useState(null);
           <h1>Loading...</h1>
         </div>
       )}
+
+      <div className="note-list">
+        <h2>Notes</h2>
+        {campaign.notes.map((note) => (
+          <div key={note.id} className="note-card">
+            <h3>{note.title}</h3>
+            <p>{note.content}</p>
+          </div>
+        ))}
+        </div>
       
     </>
   )

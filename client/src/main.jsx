@@ -10,6 +10,9 @@ import { Landing } from './pages/Landing.jsx'
 import { CreateCampaign } from './pages/CreateCampaign.jsx'
 import { CampaignSelection } from './pages/CampaignSelection.jsx'
 import { DMView } from './pages/DMView.jsx'
+import { CreateScenario } from './pages/CreateScenario.jsx'
+import { ScenarioInfo } from './pages/ScenarioInfo.jsx'
+import { CreateNote } from './pages/CreateNote.jsx'
 
 const router = createHashRouter([
     {
@@ -30,7 +33,7 @@ const router = createHashRouter([
 
             },
             {
-                path: '/campaign/create/:campaignId',
+                path: '/campaign/create/',
                 element: <CreateCampaign />
 
             },
@@ -43,6 +46,18 @@ const router = createHashRouter([
                 path: '/campaign/:campaignId',
                 element: <DMView />
 
+            },
+            {
+                path: '/scenario/create/:campaignId',
+                element: <CreateScenario />
+            },
+            {
+                path: '/scenario/:scenarioId/:campaignId',
+                element: <ScenarioInfo/>
+            },
+            {
+                path: '/note/create/:campaignId',
+                element: <CreateNote />
             },
         ]
     }

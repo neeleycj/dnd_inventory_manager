@@ -7,8 +7,9 @@ import cookies from "js-cookie";
 
 export function CampaignSelection() {
     const [campaignId, setCampaignId] = useState("");
-    const navigate = useNavigate();
     const [campaigns, setCampaigns] = useState([]);
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
     const makeRequest = useFetch();
 
     const handleSubmit = async (e) => {
@@ -37,8 +38,23 @@ export function CampaignSelection() {
             console.log(campaigns);
         }
     }
+    async function getUser() {
+        const makeRequest = useFetch();
+                const res = await makeRequest("/user/", "GET", null, {
+                    credentials: "same-origin",
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": cookies.get("csrftoken"),
+                    "Accept": "application/json",
+                });
+                if (res.ok){
+                    const user = await res.json();
+                    setUser(user);
+                    console.log(user);
+                }
+    }
     
     useEffect(() => {
+        getUser();
         getCampaigns();
     }, []);
 
@@ -46,15 +62,16 @@ export function CampaignSelection() {
     <div className="campaign-selection">
       <h1>Select a Campaign</h1>
       <p>Choose existing campaign or join a new one.</p>
-      <button className="get-started-button">
-        <Link to="/character/">Campaign Placeholder</Link>
-      </button>
         <div>
         <h2>Available Campaigns</h2>
         <ul>
             {campaigns.map((campaign) => (
                 <li key={campaign.id}>
-                    <Link to={`/character/${campaign.id}/`}>{campaign.name}</Link>
+                    {campaign.dm === user.username?(
+                        <Link to={`/campaign/${campaign.id}/`}>{campaign.name}</Link>
+                ): (
+                        <Link to={`/character/${campaign.id}/`}>{campaign.name}</Link>
+                    )}
                 </li>
             ))}
         </ul>

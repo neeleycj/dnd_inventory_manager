@@ -75,16 +75,72 @@ def campaign_list(request):
 
 @login_required
 def campaign_detail(request, campaign_id):
-    campaign = Campaign.objects.get(id=campaign_id)
-    characters = Character.objects.filter(campaigns=campaign)
-    scenarios = Scenario.objects.filter(campaign=campaign)
-    notes = Notes.objects.filter(campaign=campaign)
-    return render(request, 'campaign_detail.html', {
-        'campaign': campaign,
-        'characters': characters,
-        'scenarios': scenarios,
-        'notes': notes
-    })
+    try:
+        campaign = Campaign.objects.get(id=campaign_id)
+        characters = Character.objects.filter(campaign=campaign)
+        scenarios = Scenario.objects.filter(campaign=campaign)
+        notes = Notes.objects.filter(campaign=campaign)
+        campaign_data = {
+            "id": campaign.id,
+            "name": campaign.name,
+            "description": campaign.description,
+            "dm": campaign.dm.username,
+            "players": [player.username for player in campaign.players.all()],
+            "characters": [model_to_dict(character) for character in characters],
+            "scenarios": [model_to_dict(scenario) for scenario in scenarios],
+            "notes": [model_to_dict(note) for note in notes]
+        }
+        return JsonResponse(campaign_data, safe=False)
+    except ObjectDoesNotExist:
+        return JsonResponse({'error': 'Campaign not found'}, status=404)
+
+@login_required
+def create_scenario(request):
+    body = json.loads(request.body)
+    campaign_id = body["campaignId"]
+    try:
+        campaign = Campaign.objects.get(id=campaign_id)
+    except Campaign.DoesNotExist:
+        return JsonResponse({"error": "Campaign not found"}, status=404)
+
+    scenario = Scenario(
+        title=body["title"],
+        description=body["description"],
+        location=body["location"],
+        npcs=body["npcs"],
+        encounters=body["encounters"],
+        loot=body["loot"],
+        notes=body["notes"],
+        campaign=campaign
+    )
+    scenario.save()
+    return JsonResponse(model_to_dict(scenario), safe=False)
+
+@login_required
+def create_note(request):
+    body = json.loads(request.body)
+    campaign_id = body["campaignId"]
+    try:
+        campaign = Campaign.objects.get(id=campaign_id)
+    except Campaign.DoesNotExist:
+        return JsonResponse({"error": "Campaign not found"}, status=404)
+
+    note = Notes(
+        title=body["title"],
+        content=body["content"],
+        campaign=campaign
+    )
+    note.save()
+    return JsonResponse(model_to_dict(note), safe=False)
+
+@login_required
+def scenario_detail(request, scenario_id, campaign_id):
+    try:
+        scenario = Scenario.objects.get(id=scenario_id, campaign_id=campaign_id)
+        return JsonResponse(model_to_dict(scenario), safe=False)
+    except Scenario.DoesNotExist:
+        return JsonResponse({"error": "Scenario not found"}, status=404)
+
 
 @login_required
 def get_character_for_campaign(request, campaign_id):
