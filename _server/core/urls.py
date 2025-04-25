@@ -14,4 +14,5 @@ urlpatterns = [
     path('scenario/create/', view=views.create_scenario, name="create_scenario"),
     path('scenario/<int:scenario_id>/<int:campaign_id>/', view=views.scenario_detail, name="scenario_detail"),
     path('note/create/', view=views.create_note, name="create_notes"),
+    path('character/update/<int:character_id>/', view=views.update_character, name="update_character"),
 ]

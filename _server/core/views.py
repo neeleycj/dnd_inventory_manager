@@ -195,3 +195,17 @@ def create_character(req):
     campaign.players.add(req.user)
 
     return JsonResponse(model_to_dict(character), safe=False)
+
+@login_required
+def update_character(req, character_id):
+    body = json.loads(req.body)
+    try:
+        character = Character.objects.get(id=character_id, user=req.user)
+        for key, value in body.items():
+            setattr(character, key, value)
+        character.save()
+        return JsonResponse(model_to_dict(character), safe=False)
+    except ObjectDoesNotExist:
+        return JsonResponse({'error': 'Character not found'}, status=404)
+    
+    

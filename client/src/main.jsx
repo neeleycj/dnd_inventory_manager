@@ -13,6 +13,7 @@ import { DMView } from './pages/DMView.jsx'
 import { CreateScenario } from './pages/CreateScenario.jsx'
 import { ScenarioInfo } from './pages/ScenarioInfo.jsx'
 import { CreateNote } from './pages/CreateNote.jsx'
+import { UpdateCharacter } from './pages/UpdateCharacter.jsx'
 
 const router = createHashRouter([
     {
@@ -30,7 +31,11 @@ const router = createHashRouter([
             {
                 path: '/character/:campaignId',
                 element: <PlayerView />
-
+                
+            },
+            {
+                path: '/character/update/:characterId/:campaignId',
+                element: <UpdateCharacter />
             },
             {
                 path: '/campaign/create/',
