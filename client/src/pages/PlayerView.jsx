@@ -72,6 +72,10 @@ const [campaign, setCampaign] = useState(null);
         <button>
             <Link to={`/character/update/${character.id}/${campaignId}/`}>Update Character</Link>
         </button>
+        <button>
+            <Link to={`/handbook`}>Player Handbook</Link>
+        </button>
+        
      </div>
       {character ?(
         <CharacterSheet 
