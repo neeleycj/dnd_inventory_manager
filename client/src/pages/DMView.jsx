@@ -33,6 +33,9 @@ export function DMView() {
     return (
     <>
         <div className="dm-view">
+        <button>
+        <Link to="/">Back Home</Link>
+        </button>
             
         <h1>DM View</h1>
         <p>This is the DM view where you can manage your campaign.</p>
