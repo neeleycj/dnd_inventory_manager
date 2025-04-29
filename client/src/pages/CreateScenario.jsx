@@ -44,7 +44,6 @@ export function CreateScenario() {
             console.log(scenario);
             navigate(`/campaign/${campaignId}/`);
         } else {
-            // Handle error
             console.error("Failed to create scenario");
         }
     }

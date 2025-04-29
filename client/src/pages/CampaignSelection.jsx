@@ -14,14 +14,12 @@ export function CampaignSelection() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Assuming you have a function to fetch campaign details
         const res = await fetch(`/campaign/check/${campaignId}/`);
         if (res.ok) {
             const campaign = await res.json();
             console.log(campaign);
             navigate(`/character/create/${campaign.id}/`);
         } else {
-            // Handle error
             console.log("Failed to join campaign");
         }
     };

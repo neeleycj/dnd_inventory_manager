@@ -26,6 +26,7 @@ export function DMView() {
     useEffect(() => {
         getCampaign();
     }, []);
+    
     if (!campaign) {
         return <div>Loading...</div>;
     }

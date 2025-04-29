@@ -55,6 +55,7 @@ def check_campaign(request, campaign_id):
         return JsonResponse({"id": campaign.id, "name": campaign.name, "description": campaign.description}, status=200)
     except Campaign.DoesNotExist:
         return JsonResponse({"error": "Campaign not found"}, status=404)
+
 @login_required
 def campaign_list(request):
     campaigns = Campaign.objects.filter(players=request.user)
@@ -116,6 +117,14 @@ def create_scenario(request):
     return JsonResponse(model_to_dict(scenario), safe=False)
 
 @login_required
+def scenario_detail(request, scenario_id, campaign_id):
+    try:
+        scenario = Scenario.objects.get(id=scenario_id, campaign_id=campaign_id)
+        return JsonResponse(model_to_dict(scenario), safe=False)
+    except Scenario.DoesNotExist:
+        return JsonResponse({"error": "Scenario not found"}, status=404)
+
+@login_required
 def create_note(request):
     body = json.loads(request.body)
     campaign_id = body["campaignId"]
@@ -133,15 +142,6 @@ def create_note(request):
     return JsonResponse(model_to_dict(note), safe=False)
 
 @login_required
-def scenario_detail(request, scenario_id, campaign_id):
-    try:
-        scenario = Scenario.objects.get(id=scenario_id, campaign_id=campaign_id)
-        return JsonResponse(model_to_dict(scenario), safe=False)
-    except Scenario.DoesNotExist:
-        return JsonResponse({"error": "Scenario not found"}, status=404)
-
-
-@login_required
 def get_character_for_campaign(request, campaign_id):
     campaign = campaign = Campaign.objects.get(id=campaign_id)
     character = campaign.characters.filter(user=request.user).first()
@@ -150,7 +150,6 @@ def get_character_for_campaign(request, campaign_id):
         return JsonResponse({"character": model_to_dict(character)})
     else:
         return JsonResponse({"error": "Character not found"}, status=404)
-
 
 @login_required
 def character_detail(req, campaign_id):
@@ -171,7 +170,6 @@ def create_character(req):
     except Campaign.DoesNotExist:
         return JsonResponse({"error": "Campaign not found"}, status=404)
 
-    # Optional: ensure user doesn't already have a character in this campaign
     if Character.objects.filter(user=req.user, campaign=campaign).exists():
         return JsonResponse({"error": "Character already exists in this campaign"}, status=400)
 
@@ -189,7 +187,7 @@ def create_character(req):
         features_and_traits=body["features_and_traits"],
         backstory=body["backstory"],
         user=req.user,
-        campaign=campaign,  # make sure your Character model has this FK
+        campaign=campaign,
     )
     campaign.players.add(req.user)
 

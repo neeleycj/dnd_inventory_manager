@@ -6,11 +6,8 @@ import cookies from "js-cookie";
 
 export function PlayerView() {
   const { campaignId } = useParams();
-
   const [character, setCharacter] = useState(null);
-  const [user, setUser] = useState(null);
   const [campaign, setCampaign] = useState(null);
-
   const [modalItem, setModalItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,20 +43,19 @@ export function PlayerView() {
 
   async function handleEquipmentClick(itemName) {
     try {
-      console.log("Clicked:", itemName); // ✅ for debugging
+      console.log("Clicked:", itemName); // for debugging
       const formattedName = itemName
         .toLowerCase()
         .replace(/[',()]/g, '') // Remove commas, apostrophes, parentheses
         .replace(/ /g, "-");    // Replace spaces with hyphens
 
       const url = `https://www.dnd5eapi.co/api/2014/equipment/${formattedName}`;
-      console.log("Fetching URL:", url); // ✅ for debugging
+      console.log("Fetching URL:", url); // for debugging
 
       const res = await fetch(url);
 
       if (res.ok) {
         const data = await res.json();
-        console.log("Fetched item:", data); // ✅ for debugging
         setModalItem(data);
         setIsModalOpen(true);
       } else {

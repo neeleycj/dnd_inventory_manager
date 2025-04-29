@@ -12,7 +12,7 @@ function App() {
       // navigate away from the single page app!
       window.location = "/registration/sign_in/";
     } else {
-      // handle logout failed!
+      console.error("Logout failed");
     }
   }
 

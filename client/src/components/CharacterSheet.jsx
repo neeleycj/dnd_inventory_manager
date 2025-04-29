@@ -1,5 +1,5 @@
 export default function CharacterSheet(props) {
-  const { onEquipmentClick } = props; // 🆕 Get click handler passed in
+  const { onEquipmentClick } = props;
 
   return (
 <div className="character-sheet">

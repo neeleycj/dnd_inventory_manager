@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 

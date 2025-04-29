@@ -22,7 +22,6 @@ export function CreateNote() {
             console.log(note);
             navigate(`/campaign/${campaignId}/`);
         } else {
-            // Handle error
             console.error("Failed to create note");
         }
     }

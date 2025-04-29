@@ -20,7 +20,6 @@ export function CreateCampaign() {
          
             navigate(`/campaign/${campaign.id}/`);
         } else {
-            // Handle error
             console.error("Failed to create campaign");
         }
     };
