@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <nav className="navbar">
-        <h1>Character Sheet</h1>
+        <h1>Campaign Mamnager</h1>
         <button onClick={logout}>Logout</button>
       </nav>
       <main>

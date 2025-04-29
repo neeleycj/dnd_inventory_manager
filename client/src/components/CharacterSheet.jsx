@@ -48,12 +48,12 @@ export default function CharacterSheet(props) {
 
           <div className="character-sheet-section">
             <h3>Saving Throws</h3>
-            <p>Strength: +5</p>
-            <p>Constitution: +4</p>
-            <p>Dexterity: +2</p>
-            <p>Wisdom: +1</p>
-            <p>Intelligence: +0</p>
-            <p>Charisma: -1</p>
+            <p>Strength: {props.saving_throws.str}</p>
+            <p>Constitution: {props.saving_throws.con}</p>
+            <p>Dexterity: {props.saving_throws.dex}</p>
+            <p>Wisdom: {props.saving_throws.wis}</p>
+            <p>Intelligence: {props.saving_throws.int}</p>
+            <p>Charisma: {props.saving_throws.cha}</p>
           </div>
         </div>
 

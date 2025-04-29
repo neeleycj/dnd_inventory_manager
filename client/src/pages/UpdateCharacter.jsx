@@ -59,7 +59,7 @@ export function UpdateCharacter() {
     async function handleSubmit(e){
         e.preventDefault();
         const makeRequest = useFetch();
-        const res = await makeRequest(`/character/update/${characterId}`, "POST", {
+        const res = await makeRequest(`/character/update/${characterId}/`, "POST", {
           name,
           class_type,
           level,
@@ -264,12 +264,41 @@ export function UpdateCharacter() {
 
           <div className="character-sheet-section">
             <h3>Saving Throws</h3>
-            <p>Strength: +5</p>
-            <p>Constitution: +4</p>
-            <p>Dexterity: +2</p>
-            <p>Wisdom: +1</p>
-            <p>Intelligence: +0</p>
-            <p>Charisma: -1</p>
+            <p>Strength: <input type="text" 
+            name="str"
+            value={saving_throws.str}
+            onChange={e => handleNestedStateChange(setSaving_throws,"str", e.target.value)}
+            /></p>
+            <p>Constitution: 
+            <input type="text"
+            name="con"
+            value={saving_throws.con}
+            onChange={e => handleNestedStateChange(setSaving_throws,"con", e.target.value)}
+            /></p>
+            <p>Dexterity:
+            <input type="text"
+            name="dex"
+            value={saving_throws.dex}
+            onChange={e => handleNestedStateChange(setSaving_throws,"dex", e.target.value)}
+            /></p>
+            <p>Wisdom:
+            <input type="text"
+            name="wis"
+            value={saving_throws.wis}
+            onChange={e => handleNestedStateChange(setSaving_throws,"wis", e.target.value)}
+            /></p>
+            <p>Intelligence:
+            <input type="text"
+            name="int"
+            value={saving_throws.int}
+            onChange={e => handleNestedStateChange(setSaving_throws,"int", e.target.value)}
+            /></p>
+            <p>Charisma:
+            <input type="text"
+            name="cha"
+            value={saving_throws.cha}
+            onChange={e => handleNestedStateChange(setSaving_throws,"cha", e.target.value)}
+            /></p>
           </div>
         </div>
 
@@ -319,6 +348,17 @@ export function UpdateCharacter() {
                 value={weapon}
                 onChange={(e) => handleEquipmentChange("weapons", index, e.target.value)}
                 />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEquipment((prevEquipment) => ({
+                      ...prevEquipment,
+                      weapons: prevEquipment.weapons.filter((_, i) => i !== index), // Remove the item at the specified index
+                    }));
+                  }}
+                >
+                  Remove
+                </button>
             </li>
             ))}
             <li><strong>Armor:</strong></li>
@@ -329,6 +369,17 @@ export function UpdateCharacter() {
                 value={armor}
                 onChange={(e) => handleEquipmentChange("armor", index, e.target.value)}
                 />
+             <button
+                  type="button"
+                  onClick={() => {
+                    setEquipment((prevEquipment) => ({
+                      ...prevEquipment,
+                      armor: prevEquipment.armor.filter((_, i) => i !== index), // Remove the item at the specified index
+                    }));
+                  }}
+                >
+                  Remove
+                </button>
             </li>
             ))}
             <li><strong>Other:</strong></li>
@@ -339,6 +390,17 @@ export function UpdateCharacter() {
                 value={item}
                 onChange={(e) => handleEquipmentChange("other", index, e.target.value)}
                 />
+             <button
+                  type="button"
+                  onClick={() => {
+                    setEquipment((prevEquipment) => ({
+                      ...prevEquipment,
+                      other: prevEquipment.other.filter((_, i) => i !== index), // Remove the item at the specified index
+                    }));
+                  }}
+                >
+                  Remove
+                </button>
             </li>
             ))}
         </ul>
@@ -347,33 +409,55 @@ export function UpdateCharacter() {
         <button onClick={(e) => addEquipment(e, "other")}>Add Other</button>
         </div>
 
-      <div className="character-sheet-section">
-        <h3>Features & Traits</h3>
-        <ul>
-          <li><strong>Features:</strong></li>
-          {features_and_traits.features.map((feature, index) => (
-            <li key={index}>
-              <input
-                type="text"
-                value={feature}
-                onChange={(e) => handleFTChange("features", index, e.target.value)}
-              />
-            </li>
-          ))}
-          <li><strong>Traits:</strong></li>
-          {features_and_traits.traits.map((trait, index) => (
-            <li key={index}>
-              <input
-                type="text"
-                value={trait}
-                onChange={(e) => handleFTChange("traits", index, e.target.value)}
-              />
-            </li>
-          ))}
-        </ul>
-        <button onClick={(e) => addFT(e, "features")}>Add Feature</button>
-        <button onClick={(e) => addFT(e, "traits")}>Add Trait</button>
-      </div>
+  <div className="character-sheet-section">
+  <h3>Features & Traits</h3>
+  <ul>
+    <li><strong>Features:</strong></li>
+    {features_and_traits.features.map((feature, index) => (
+      <li key={index}>
+        <input
+          type="text"
+          value={feature}
+          onChange={(e) => handleFTChange("features", index, e.target.value)}
+        />
+        <button
+          type="button"
+          onClick={() => {
+            setFeatures_and_traits((prevFT) => ({
+              ...prevFT,
+              features: prevFT.features.filter((_, i) => i !== index), // Remove the selected feature
+            }));
+          }}
+        >
+          Remove
+        </button>
+      </li>
+    ))}
+    <li><strong>Traits:</strong></li>
+    {features_and_traits.traits.map((trait, index) => (
+      <li key={index}>
+        <input
+          type="text"
+          value={trait}
+          onChange={(e) => handleFTChange("traits", index, e.target.value)}
+        />
+        <button
+          type="button"
+          onClick={() => {
+            setFeatures_and_traits((prevFT) => ({
+              ...prevFT,
+              traits: prevFT.traits.filter((_, i) => i !== index), // Remove the selected trait
+            }));
+          }}
+        >
+          Remove
+        </button>
+      </li>
+    ))}
+  </ul>
+  <button onClick={(e) => addFT(e, "features")}>Add Feature</button>
+  <button onClick={(e) => addFT(e, "traits")}>Add Trait</button>
+</div>
     </div>
         <div className="character-sheet-section">
           <h3>Backstory</h3>

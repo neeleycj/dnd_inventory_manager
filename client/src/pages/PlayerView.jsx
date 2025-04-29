@@ -63,9 +63,6 @@ const [campaign, setCampaign] = useState(null);
   return (
     <>
         <div>
-     <button>
-        <Link to={"/character/create/"}>Create Character</Link>
-        </button>
         <button>
             <Link to={`/campaign/join`}>Back to Campaign Selection</Link>
         </button>
