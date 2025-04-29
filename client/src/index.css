@@ -139,6 +139,18 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+.character-sheet-wrapper {
+  background-color: var(--color-background_primary);
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .character-sheet-header {
   text-align: center;
@@ -517,4 +529,25 @@ textarea:focus {
 
 .equipment-clickable:hover {
   background-color: var(--color-grey-hover);
+}
+
+.note-section {
+  background-color: var(--color-background_primary);
+  max-width: 800px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.landing-page {
+  background-color: var(--color-background_primary);
+  max-width: 800px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.campaign-selection {
+  background-color: var(--color-background_primary);
+  max-width: 800px;
+  border-radius: 15px;
+  padding: 15px;
 }

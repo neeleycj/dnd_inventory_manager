@@ -6,50 +6,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-      @font-face {
-  font-family: 'Eagle Lake';
-  src: url("EagleLake-Regular.ttf");
+    /* === BASE RESET === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
+/* === LOAD FONT === */
 @font-face {
   font-family: 'Eagle Lake';
-  src: url("EagleLake-Regular.ttf");
+  src: url("/static/fonts/EagleLake-Regular.ttf"); /* Adjust if your path is different */
 }
 
-
+/* === ROOT VARIABLES === */
 :root {
   --color-background_primary: #E0CBA8;
-  --color-text_primary: #00272b;
-  --color-text_secondary: #E0CBA8;
   --color-background_secondary: #4a4a4a;
+  --color-text_primary: #00272b;
   --color-green: #04a777;
   --color-red: #B90C09;
   --color-white: #ffffff;
   --color-grey-light: #cccccc;
   --color-grey-medium: #999999;
   --color-grey-hover: rgba(0, 0, 0, 0.1);
-  font-family: "Eagle Lake", serif;
+  font-family: 'Eagle Lake', serif;
 }
 
-
+/* === BODY === */
 body {
   background-color: var(--color-background_secondary);
   color: var(--color-text_primary);
-  margin: 0;
-  padding: 50px;
-}
-.container {
-  max-width: 600px;
-  margin: 0 auto;
+  font-family: 'Eagle Lake', serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
-  background-color: var(--color-background_primary);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: "Eagle Lake", serif;
-  color: var(--color-text_primary);
-  text-align: center;
 }
+
+/* === FORM STYLING === */
+form {
+  background-color: var(--color-background_primary);
+  padding: 30px;
+  border: 2px solid var(--color-text_primary);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* === LABELS AND INPUTS === */
+label {
+  font-size: 1.1rem;
+  color: var(--color-text_primary);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid var(--color-grey-medium);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  color: var(--color-text_primary);
+}
+
+input:focus {
+  border-color: var(--color-green);
+  outline: none;
+}
+
+/* === BUTTON === */
+button {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #038c67; /* slightly darker green */
+}
+
+/* === LINK === */
+a {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-green);
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
