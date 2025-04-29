@@ -15,6 +15,7 @@ import { CreateScenario } from './pages/CreateScenario.jsx'
 import { ScenarioInfo } from './pages/ScenarioInfo.jsx'
 import { CreateNote } from './pages/CreateNote.jsx'
 import { UpdateCharacter } from './pages/UpdateCharacter.jsx'
+import { HandbookPage } from './pages/HandbookPage.jsx'
 
 const router = createHashRouter([
     {
@@ -65,6 +66,11 @@ const router = createHashRouter([
                 path: '/note/create/:campaignId',
                 element: <CreateNote />
             },
+            {
+                path: '/handbook',
+                element: <HandbookPage />
+            },
+
         ]
     }
 ])

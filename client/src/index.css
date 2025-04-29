@@ -13,6 +13,7 @@
 :root {
   --color-background_primary: #E0CBA8;
   --color-text_primary: #00272b;
+  --color-text_secondary: #E0CBA8;
   --color-background_secondary: #4a4a4a;
   --color-green: #04a777;
   --color-red: #B90C09;
@@ -29,6 +30,99 @@ body {
   color: var(--color-text_primary);
   margin: 0;
   padding: 50px;
+}
+
+.page-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-text_secondary);
+}
+
+/* HANDBOOK MAIN CONTAINER */
+.handbook-container {
+  background-color: var(--color-background_primary);
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 2px solid var(--color-background_secondary);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* SEARCH AND DROPDOWN */
+.handbook-container select,
+.handbook-container input {
+  margin-bottom: 15px;
+}
+
+/* HANDBOOK LAYOUT */
+.handbook-layout {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* ITEM LIST (LEFT PANEL) */
+.item-list {
+  width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  border: 1px solid var(--color-grey-light);
+  border-radius: 8px;
+  background-color: var(--color-white);
+}
+
+/* EACH ITEM */
+.item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: var(--color-text_primary);
+}
+
+.item:hover {
+  background-color: var(--color-grey-hover);
+}
+
+/* SELECTED ITEM DETAILS (RIGHT PANEL) */
+.item-details {
+  flex: 1;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-grey-light);
+  border-radius: 8px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 500px;
+  color: var(--color-text_primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* HEADERS INSIDE ITEM DETAILS */
+.item-details h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.item-details h4 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+/* TEXT INSIDE ITEM DETAILS */
+.item-details p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/* PROPERTIES LIST */
+.item-details ul {
+  padding-left: 20px;
+  list-style: disc;
 }
 
 /* CHARACTER SHEET */
@@ -208,27 +302,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-.grey-number-box {
-  background-color: #ddd;
-  border-radius: 6px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-top: 5px;
-}
-
-/* === GENERAL RESET & BASE === */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
 
 a:hover {
@@ -247,71 +320,6 @@ h6 {
   margin-bottom: 0.5em;
 }
 
-h1 {
-  font-size: 2rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  color: var(--color-text_primary);
-  margin-bottom: 0.5em;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-}
-
-h5 {
-  font-size: 1rem;
-}
-
-h6 {
-  font-size: 0.875rem;
-}
-h4 {
-  font-size: 1.25rem;
-}
-
-h5 {
-  font-size: 1rem;
-}
-
-h6 {
-  font-size: 0.875rem;
-}
-
-/* === BUTTONS === */
-
-button,
-.button {
-  background-color: var(--color-green);
-  color: var(--color-white);
-  border: none;
-}
 /* === BUTTONS === */
 
 button,
@@ -328,6 +336,7 @@ button,
   cursor: pointer;
   transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
+  margin: 5px;
 }
 
 button:hover,
@@ -380,52 +389,132 @@ textarea:focus {
   outline: none;
 }
 
-/* === UTILITIES === */
+/* === UPDATE CHARACTER FORM STYLES === */
 
-.gap-sm {
-  gap: 8px;
+.equipment-search {
+  margin-bottom: 10px;
 }
 
-.gap-md {
-  gap: 16px;
+.equipment-search input {
+  width: 70%;
+  padding: 0.5em;
+  font-size: 1rem;
+  margin-right: 5px;
 }
 
-.gap-lg {
-  gap: 24px;
+.equipment-search button {
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.mt-1 {
-  margin-top: 8px;
+.equipment-search button:hover {
+  background-color: #038c67;
 }
 
-.mt-2 {
-  margin-top: 16px;
+.equipment-results {
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-grey-light);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
-.mt-3 {
-  margin-top: 24px;
+.equipment-result-item {
+  padding: 8px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--color-grey-light);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.mb-1 {
+.equipment-result-item:hover {
+  background-color: var(--color-grey-hover);
+}
+
+.equipment-list {
+  list-style: none;
+  padding: 0;
+}
+
+.equipment-list li {
   margin-bottom: 8px;
 }
 
-.mb-2 {
-  margin-bottom: 16px;
+.equipment-buttons {
+  margin-top: 10px;
 }
 
-.mb-3 {
-  margin-bottom: 24px;
+.equipment-buttons button {
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
-.p-1 {
-  padding: 8px;
+/* === MODAL === */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.p-2 {
-  padding: 16px;
+.modal-content {
+  background-color: var(--color-background_primary);
+  border: 2px solid var(--color-background_secondary);
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
 }
 
-.p-3 {
-  padding: 24px;
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--color-text_primary);
+}
+
+.modal-content p, .modal-content li {
+  color: var(--color-text_primary);
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--color-red);
+  color: var(--color-white);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.close-modal:hover {
+  background-color: #990000;
+}
+.equipment-clickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.equipment-clickable:hover {
+  background-color: var(--color-grey-hover);
 }
