@@ -1,6 +1,9 @@
 {% extends "registration/base.html"%}
 
 {% block content %}
+<div class="container">
+<h1>Sign In</h1>
+
 <form action="/registration/sign_in/" method="post">
   {% csrf_token %}
   <div>
@@ -19,4 +22,5 @@
 
 </form>
 <a href="/registration/sign_up/">Create New Account</a>
+</div>
 {% endblock %}

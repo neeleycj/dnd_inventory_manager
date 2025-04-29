@@ -83,10 +83,9 @@ export function PlayerView() {
   return (
     <>
       <div>
-        <button><Link to={"/character/create/"}>Create Character</Link></button>
         <button><Link to={`/campaign/join`}>Back to Campaign Selection</Link></button>
         <button><Link to={`/character/update/${character.id}/${campaignId}/`}>Update Character</Link></button>
-        <button><Link to={`/handbook`}>Player Handbook</Link></button>
+        <button><Link to={`/handbook/${campaignId}`}>Player Handbook</Link></button>
       </div>
 
       <div className="character-sheet-wrapper">

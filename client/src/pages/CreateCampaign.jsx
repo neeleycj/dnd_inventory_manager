@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export function CreateCampaign() {
     const [campaignName, setCampaignName] = useState("");
@@ -27,6 +27,9 @@ export function CreateCampaign() {
     
     return (
     <div className="create-campaign">
+      <button>
+        <Link to="/">Back Home</Link>
+        </button>
       <h1>Create a New Campaign</h1>
       <form>
         <label>Campaign Name:</label>

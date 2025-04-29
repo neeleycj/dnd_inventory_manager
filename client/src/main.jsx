@@ -67,7 +67,7 @@ const router = createHashRouter([
                 element: <CreateNote />
             },
             {
-                path: '/handbook',
+                path: '/handbook/:campaignId',
                 element: <HandbookPage />
             },
 

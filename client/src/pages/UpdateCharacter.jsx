@@ -444,6 +444,9 @@ export function UpdateCharacter() {
                 </button>
             </li>
               ))}
+            <button onClick={(e) => addEquipment(e, "weapons")}>Add Weapon</button>
+        <button onClick={(e) => addEquipment(e, "armor")}>Add Armor</button>
+        <button onClick={(e) => addEquipment(e, "other")}>Add Other</button>
             </ul>
 
         <div className="character-sheet-section">

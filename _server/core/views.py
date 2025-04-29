@@ -57,10 +57,9 @@ def check_campaign(request, campaign_id):
         return JsonResponse({"error": "Campaign not found"}, status=404)
 @login_required
 def campaign_list(request):
-    campaigns = Campaign.objects.get(players=request.user)
+    campaigns = Campaign.objects.filter(players=request.user)
     if not campaigns:
         return JsonResponse({"error": "No campaigns found"}, status=404)
-    campaigns = Campaign.objects.filter(players=request.user)
     campaigns = [
         {
             "id": campaign.id,

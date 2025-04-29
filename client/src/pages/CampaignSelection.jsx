@@ -60,6 +60,9 @@ export function CampaignSelection() {
 
   return (
     <div className="campaign-selection">
+        <button>
+        <Link to="/">Back Home</Link>
+        </button>
       <h1>Select a Campaign</h1>
       <p>Choose existing campaign or join a new one.</p>
         <div>
