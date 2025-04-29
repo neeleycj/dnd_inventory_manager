@@ -51,12 +51,12 @@ export function PlayerView() {
         .toLowerCase()
         .replace(/[',()]/g, '') // Remove commas, apostrophes, parentheses
         .replace(/ /g, "-");    // Replace spaces with hyphens
-  
+
       const url = `https://www.dnd5eapi.co/api/2014/equipment/${formattedName}`;
       console.log("Fetching URL:", url); // ✅ for debugging
-  
+
       const res = await fetch(url);
-  
+
       if (res.ok) {
         const data = await res.json();
         console.log("Fetched item:", data); // ✅ for debugging
@@ -69,8 +69,8 @@ export function PlayerView() {
       console.error('Error fetching item info for:', itemName, error);
     }
   }
-  
-  
+
+
 
   if (!character || !campaign) {
     return (
@@ -91,7 +91,7 @@ export function PlayerView() {
 
       <div className="character-sheet-wrapper">
         {character && (
-          <CharacterSheet 
+          <CharacterSheet
             character_name={character.name}
             class={character.class_type}
             level={character.level}
@@ -105,19 +105,20 @@ export function PlayerView() {
             features_and_traits={character.features_and_traits}
             backstory={character.backstory}
             onEquipmentClick={handleEquipmentClick} // 🆕 pass click handler
-            
+
           />
         )}
-      </div>
-
-      <div className="note-list">
-        <h2>Notes</h2>
-        {campaign.notes.map((note) => (
-          <div key={note.id} className="note-card">
-            <h3>{note.title}</h3>
-            <p>{note.content}</p>
+        <div className="note-section">
+          <div className="note-list">
+            <h2>Notes</h2>
+            {campaign.notes.map((note) => (
+              <div key={note.id} className="note-card">
+                <h3>{note.title}</h3>
+                <p>{note.content}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* === Modal === */}
